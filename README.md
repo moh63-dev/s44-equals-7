@@ -31,7 +31,11 @@ Format: `certificate/FORMAT_mixed_v1.md` (Evan Daniel's mixed-cover format).
 | `verification/stress.py` (this repo, float) | mass of 675,000 random / near-tile / near-45° squares | min 1.0031 | seconds |
 | `search/tilesep.py` (this repo, float) | targeted search for near-wall low-mass valleys | min 1.0034, none below 1 | 2 min |
 
-Rerun: `bash verification/verify.sh` (`--fast` for the 5-minute subset).  The checkers are used **unmodified**
+Rerun: `bash verification/verify.sh`.  `--fast` (about 5 minutes) runs the exact sanity check, the zmx2 D4 sweep
+and an audit of our recorded zm_mixed logs (every one of the 9,800 roots finished, and every root left with
+uncertified boxes at depth 24 has a depth-30 run with none).  The default also runs the full zmx2 sweep and the
+complete zm_mixed check, `verification/zm_mixed_check.py run`, which repeats our two-stage procedure (depth 24
+everywhere, then depth 30 where needed) in parallel and resumably; it takes about 140 CPU-hours.  The checkers are used **unmodified**
 from [evand/square-packing@659ee62](https://github.com/evand/square-packing/tree/659ee62e4a9d39542a1146e8b011cc3ab6407ede)
 (`verify2/` = zmx2, `search/zm_mixed.py`).
 
